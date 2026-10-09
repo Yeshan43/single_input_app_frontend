@@ -1,0 +1,248 @@
+:root {
+  --bg: #0e1116;
+  --panel: #151a21;
+  --panel-border: #232b35;
+  --border: #2b3440;
+  --text: #e7eaee;
+  --text-muted: #7c8794;
+  --accent: #f2b84b;
+  --accent-dim: #8a6a2c;
+  --danger: #e2685a;
+  --success: #6fb98f;
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(
+      circle at 20% -10%,
+      rgba(242, 184, 75, 0.08),
+      transparent 45%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0) 200px
+    );
+  color: var(--text);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  gap: 20px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 440px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 36px 32px 32px;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 0 0 28px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+input[type='text'] {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--text);
+  background: #0c0f14;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+input[type='text']::placeholder {
+  color: #4a5563;
+}
+
+input[type='text']:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(242, 184, 75, 0.18);
+}
+
+input[type='text']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.validation {
+  min-height: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--danger);
+}
+
+.submit-button {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: #14100a;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 80ms ease, background-color 120ms ease, opacity 120ms ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #f5c669;
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.submit-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.submit-button:disabled {
+  background: var(--accent-dim);
+  color: #201a10;
+  cursor: not-allowed;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border);
+  padding-top: 14px;
+  min-height: 18px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.status-line--submitting .status-dot {
+  background: var(--accent);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.status-line--submitting .status-text {
+  color: var(--accent);
+}
+
+.status-line--success .status-dot {
+  background: var(--success);
+}
+
+.status-line--success .status-text {
+  color: var(--success);
+}
+
+.status-line--error .status-dot {
+  background: var(--danger);
+}
+
+.status-line--error .status-text {
+  color: var(--danger);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.footnote {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #4a5563;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-line--submitting .status-dot {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 28px 22px 24px;
+  }
+}
